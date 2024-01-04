@@ -11,6 +11,21 @@ on:
         description: 'Define value to true to explicitly skip test execution.'
   
 jobs: 
+
+  defines_skip_test:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.skip_tests == 'true'
+    steps:
+        - name: Echo a Test Message
+          run: echo "simulating execution of release"
+  
+  is_pre_release:
+    runs-on: ubuntu-latest
+    if: contains(github.event.inputs.version_number, 'pre')
+    steps:
+        - name: Echo a Test Message
+          run: echo "simulating execution of release"
+
   # run accepetance test if not skipped and is definitive release.  
   run-qa-acceptance-tests:
     if: github.event.inputs.skip_tests != 'true' && !contains(github.event.inputs.version_number, 'pre')
