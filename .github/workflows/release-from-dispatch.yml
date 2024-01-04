@@ -8,27 +8,27 @@ on:
         description: 'Version number (e.g., v1.0.0, v1.0.0-pre, v1.0.0-pre1)'
         required: true
       skip_tests:
-        description: 'Define value to true to explicitly skip test execution.'
+        description: 'Define value to `true` to explicitly skip test execution'
   
 jobs: 
 
   defines_skip_test:
     runs-on: ubuntu-latest
-    if: github.event.inputs.skip_tests == 'true'
+    if: inputs.skip_tests == 'true'
     steps:
         - name: Echo a Test Message
           run: echo "simulating execution of release"
   
   is_pre_release:
     runs-on: ubuntu-latest
-    if: contains(github.event.inputs.version_number, 'pre')
+    if: contains(inputs.version_number, 'pre')
     steps:
         - name: Echo a Test Message
           run: echo "simulating execution of release"
 
   # run accepetance test if not skipped and is definitive release.  
   run-qa-acceptance-tests:
-    if: github.event.inputs.skip_tests != 'true' && !contains(github.event.inputs.version_number, 'pre')
+    if: inputs.skip_tests != 'true' && !contains(inputs.version_number, 'pre')
     runs-on: ubuntu-latest
     steps:
       - name: Simulate a failing step
@@ -41,5 +41,15 @@ jobs:
     needs: [ run-qa-acceptance-tests ]
     if: ${{ always() && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success') }}
     steps:
-        - name: Echo a Test Message
-          run: echo "simulating execution of release"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Unshallow
+        run: git fetch --prune --unshallow
+      - uses: rickstaa/action-create-tag@v1 # will fail if existing tag is present
+        id: "tag_create"
+        with:
+          tag: ${{ inputs.version_number }}
+          # gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          # gpg_passphrase: ${{ secrets.PASSPHRASE }}
+      - name: Echo a Test Message
+        run: echo "simulating execution of release"
