@@ -12,7 +12,7 @@ on:
   
 jobs: 
   run-qa-acceptance-tests:
-    if: ${{ github.event.inputs.skip_tests != 'true' && !contains(github.event.inputs.version_number, 'pre') }}
+    if: ${{ github.event.inputs.skip_tests != 'true' }} && !contains(github.event.inputs.version_number, 'pre')
     runs-on: ubuntu-latest
     steps:
       - name: Simulate a failing step
@@ -23,7 +23,7 @@ jobs:
   fake-release:
     runs-on: ubuntu-latest
     needs: [ run-qa-acceptance-tests ]
-    if: ${{ github.event.inputs.skip_tests == 'true' || contains(github.event.inputs.version_number, 'pre') || needs.run-qa-acceptance-tests.result == 'success' }}
+    if: ${{ github.event.inputs.skip_tests == 'true' || needs.run-qa-acceptance-tests.result == 'success' }} || contains(github.event.inputs.version_number, 'pre')
     steps:
         - name: Echo a Test Message
           run: echo "simulating execution of release"
