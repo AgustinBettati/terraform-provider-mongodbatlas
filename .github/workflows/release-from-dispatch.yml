@@ -39,7 +39,7 @@ jobs:
   fake-release:
     runs-on: ubuntu-latest
     needs: [ run-qa-acceptance-tests ]
-    if: ${{ needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success' }}
+    if: ${{ !(needs.run-qa-acceptance-tests.result != 'skipped' && needs.run-qa-acceptance-tests.result != 'success') }}
     steps:
         - name: Echo a Test Message
           run: echo "simulating execution of release"
