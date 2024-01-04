@@ -33,8 +33,7 @@ jobs:
     steps:
       - name: Simulate a failing step
         run: |
-          echo "This step will fail"
-          exit 1
+          echo "Tests are successful"
       
   fake-release:
     runs-on: ubuntu-latest
