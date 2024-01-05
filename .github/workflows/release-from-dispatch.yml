@@ -22,7 +22,7 @@ jobs:
   # run accepetance test if not skipped and is definitive release.  
   run-qa-acceptance-tests:
     needs: [ validate-version-input ]
-    if: needs.validate-version-input.result == 'success' && inputs.skip_tests != 'true' && !contains(inputs.version_number, 'pre')
+    if: needs.validate-version-input.result == 'success' && inputs.skip_tests != 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Simulate a failing step
