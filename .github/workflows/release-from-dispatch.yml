@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Unshallow
         run: git fetch --prune --unshallow
-      - uses: rickstaa/action-create-tag@v1 # will fail if existing tag is present
+      - uses: rickstaa/action-create-tag@v1.7.2 # will fail if existing tag is present
         id: "tag_create"
         with:
           tag: ${{ inputs.version_number }}
