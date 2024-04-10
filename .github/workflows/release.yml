@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ validate-version-input, run-qa-acceptance-tests ]
     # skipped if use_existing_tag is defined to true or previous jobs failed.
-    if: always() && inputs.use_existing_tag != 'true' && !contains('pre', inputs.version_number) && needs.validate-version-input.result == 'success' && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success')
+    if: always() && inputs.use_existing_tag != 'true' && !contains(inputs.version_number, 'pre') && needs.validate-version-input.result == 'success' && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success')
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
