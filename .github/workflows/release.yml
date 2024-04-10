@@ -33,8 +33,10 @@ jobs:
       ref: ${{ inputs.use_existing_tag == 'true' && inputs.version_number  || github.ref }}
 
   update-changelog-header:
-    needs: [ run-qa-acceptance-tests ]
     runs-on: ubuntu-latest
+    needs: [ run-qa-acceptance-tests ]
+    # avoid job being skipped when acceptance tests are skipped
+    if: ${{ always() }}
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
