@@ -18,6 +18,11 @@ TODAYS_DATE=$(date "+%B %d, %Y")  # Format the date as "Month day, Year"
 NEW_RELEASE_HEADER="## $RELEASE_NUMBER ($TODAYS_DATE)"
 
 # Insert the new version header after the "(Unreleased)" line
+
+echo "$NEW_RELEASE_HEADER"
+echo "$CHANGELOG_FILE_PATH"
+ls
+
 sed -i "" -e "/(Unreleased)/a \\
 \\
 $NEW_RELEASE_HEADER" $CHANGELOG_FILE_PATH
