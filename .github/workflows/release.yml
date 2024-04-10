@@ -38,8 +38,13 @@ jobs:
   update-changelog-header:
     runs-on: ubuntu-latest
     needs: [ validate-version-input, run-qa-acceptance-tests ]
-    # skipped if use_existing_tag is defined to true or previous jobs failed.
-    if: always() && inputs.use_existing_tag != 'true' && !contains(inputs.version_number, 'pre') && needs.validate-version-input.result == 'success' && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success')
+    # skipped if use_existing_tag is defined, is a pre-release, or previous jobs failed.
+    if: >-
+      always() 
+      && inputs.use_existing_tag != 'true' 
+      && !contains(inputs.version_number, 'pre') 
+      && needs.validate-version-input.result == 'success' 
+      && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success')
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
@@ -59,7 +64,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ validate-version-input, run-qa-acceptance-tests, update-changelog-header ]
     # previous jobs must either be successful or skipped
-    if: ${{ always() && needs.validate-version-input.result == 'success' && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success') && (needs.update-changelog-header.result == 'skipped' || needs.update-changelog-header.result == 'success') }}
+    if: >- 
+      always() 
+      && needs.validate-version-input.result == 'success' 
+      && (needs.run-qa-acceptance-tests.result == 'skipped' || needs.run-qa-acceptance-tests.result == 'success') 
+      && (needs.update-changelog-header.result == 'skipped' || needs.update-changelog-header.result == 'success')
     steps:
       - name: Checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
