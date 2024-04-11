@@ -63,7 +63,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: [ validate-version-input, run-qa-acceptance-tests, update-changelog-header ]
-    # previous jobs must either be successful or skipped
+    # release is skipped if there are failures in previous steps
     if: >- 
       always() 
       && needs.validate-version-input.result == 'success' 
