@@ -1,5 +1,7 @@
 ## (Unreleased)
 
+## 1.17.3 (April 19, 2024)
+
 ## 1.17.1 (April 18, 2024)
 
 NOTES:
