@@ -1,7 +1,5 @@
 ## (Unreleased)
 
-## 1.17.1 (April 18, 2024)
-
 NOTES:
 
 * provider: New changelog format has been incorporated following [Terraform Changelog Specification](https://developer.hashicorp.com/terraform/plugin/best-practices/versioning#changelog-specification) ([#2124](https://github.com/mongodb/terraform-provider-mongodbatlas/pull/2124))
