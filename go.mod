@@ -1,11 +1,11 @@
 module github.com/mongodb/terraform-provider-mongodbatlas
 
-go 1.22
+go 1.25.0
 
 require (
 	github.com/andygrunwald/go-jira/v2 v2.0.0-20240116150243-50d59fe116d6
 	github.com/aws/aws-sdk-go v1.51.18
-	github.com/go-test/deep v1.1.0
+	github.com/go-test/deep v1.1.1
 	github.com/hashicorp/go-changelog v0.0.0-20240318095659-4d68c58a6e7f
 	github.com/hashicorp/go-cty v1.4.1-0.20200414143053-d3edf31b6320
 	github.com/hashicorp/go-version v1.6.0
@@ -21,18 +21,16 @@ require (
 	github.com/hashicorp/terraform-plugin-testing v1.7.0
 	github.com/mongodb-forks/digest v1.1.0
 	github.com/spf13/cast v1.6.0
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.11.1
 	github.com/zclconf/go-cty v1.14.4
 	go.mongodb.org/atlas v0.36.0
-	go.mongodb.org/atlas-sdk/v20231001002 v20231001002.0.0
-	go.mongodb.org/atlas-sdk/v20231115008 v20231115008.5.0
+	go.mongodb.org/atlas-sdk/v20250312024 v20250312024.0.0
 	go.mongodb.org/realm v0.1.0
 )
 
 require (
 	cloud.google.com/go v0.112.0 // indirect
-	cloud.google.com/go/compute v1.23.3 // indirect
-	cloud.google.com/go/compute/metadata v0.2.3 // indirect
+	cloud.google.com/go/compute/metadata v0.3.0 // indirect
 	cloud.google.com/go/iam v1.1.5 // indirect
 	cloud.google.com/go/storage v1.36.0 // indirect
 	dario.cat/mergo v1.0.0 // indirect
@@ -108,7 +106,7 @@ require (
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/skeema/knownhosts v1.2.1 // indirect
 	github.com/spf13/afero v1.9.2 // indirect
-	github.com/stretchr/objx v0.5.2 // indirect
+	github.com/stretchr/objx v0.5.3 // indirect
 	github.com/trivago/tgo v1.0.7 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
@@ -125,7 +123,7 @@ require (
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/mod v0.15.0 // indirect
 	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/oauth2 v0.16.0 // indirect
+	golang.org/x/oauth2 v0.36.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
